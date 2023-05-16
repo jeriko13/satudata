@@ -1,6 +1,8 @@
+
 /*eslint-disable*/
-import React from "react";
+import React, { useState, useRef } from 'react';
 import { Link } from "react-router-dom";
+import { createPopper } from "@popperjs/core";
 
 // components
 
@@ -19,7 +21,10 @@ function findPos(obj) {
 
 
 export default function Navbar(props) {
+  
   const [navbarOpen, setNavbarOpen] = React.useState(false);
+  const [dropdownOpen, setDropdownOpen] = React.useState(false);
+  const dropdownRef = useRef(null);
   return (
     <>
       <nav className="top-0 absolute z-50 w-full flex flex-wrap items-center justify-between px-2 py-3 navbar-expand-lg">
@@ -57,38 +62,96 @@ export default function Navbar(props) {
                 <PagesDropdown />
               </li> */}
 
-              <li className="flex items-center">
+              {/* <li className="flex items-center">
                 <a className="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-white cursor-pointer"
                 onClick={() => window.scroll({top: findPos(document.getElementById("dashboard")), left: 0, behavior: 'smooth'})}>
                 Dashboard & Dataset
                 </a>
+              </li> */}
+              
+{/*   
+              <li className="relative">
+  <a
+    href="/Dashboard"
+    className="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-white cursor-pointer"
+    onMouseEnter={() => setDropdownOpen(true)}
+    onMouseLeave={() => setDropdownOpen(false)}
+  >
+    Dashboard
+  </a>
+  {dropdownOpen && (
+    <ul
+      ref={dropdownRef}
+      className="absolute top-full left-0 w-full bg-white text-gray-700 border border-gray-300 rounded-b-lg z-50"
+      onMouseEnter={() => setDropdownOpen(true)}
+      onMouseLeave={() => setDropdownOpen(false)}
+    >
+      <li className="py-2 px-4 hover:bg-gray-100 cursor-pointer">
+        <a href="/Dashboard/ListUrusan">Sektoral</a>
+      </li>
+      <li className="py-2 px-4 hover:bg-gray-100 cursor-pointer">
+        <a href="/Dashboard/ListObjek">Dataset</a>
+      </li>
+    </ul>
+  )}
+</li> */}
+
+                   
+               <li className="flex items-center">
+                <a href="/Dashboard/ListAspek" className="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-white cursor-pointer">
+                Dashboard RPD
+                </a>
               </li>
+              
+               <li className="flex items-center">
+                <a href="/Dashboard/ListUrusan" className="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-white cursor-pointer">
+                Dashboard & Sektoral
+                </a>
+              </li>
+
               <li className="flex items-center">
-                <a className="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-white cursor-pointer" 
-                onClick={() => window.scroll({top: findPos(document.getElementById("faq")), left: 0, behavior: 'smooth'})}>
+                <a href="/Dashboard/ListObjek" className="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-white cursor-pointer">
+                Dashboard & Dataset
+                </a>
+              </li>
+
+              <li className="flex items-center">
+                <a href="/#cari" className="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-white cursor-pointer">
+                Cari Data
+                </a>
+              </li>
+
+              <li className="flex items-center">
+                <a href="/#faq" className="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-white cursor-pointer">
                 FAQ
                 </a>
               </li>
+
               <li className="flex items-center">
-                <a className="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-white cursor-pointer"
-                onClick={() => window.scroll({top: findPos(document.getElementById("peraturan")), left: 0, behavior: 'smooth'})}>
+                <a href="/#peraturan" className="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-white cursor-pointer">
                 Peraturan Terkait
                 </a>
               </li>
+
               <li className="flex items-center">
-                <a className="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-white cursor-pointer"
-                onClick={() => window.scroll({top: findPos(document.getElementById("tentang")), left: 0, behavior: 'smooth'})}>
+                <a href="/#tentang" className="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-white cursor-pointer">
                 Kontak Kami
                 </a>
               </li>
 
-              
               <li className="flex items-center">
-                <a href="https://satudata.banjarnegarakab.go.id/satudata_backoffice/login" className="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-white cursor-pointer"
-                onClick={() => window.scroll({top: findPos(document.getElementById("/satudata_backoffice/login")), left: 0, behavior: 'smooth'})}>
+                <a href="https://satudata.banjarnegarakab.go.id/satudata_backoffice/login" className="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-white cursor-pointer">
                 Login
                 </a>
               </li>
+
+              {/* <li className="flex items-center">
+                <a href="/satudata_backoffice/login" className="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-white cursor-pointer"
+                onClick={() => window.scroll({top: findPos(document.getElementById("/satudata_backoffice/login")), left: 0, behavior: 'smooth'})}>
+                Login
+                </a>
+              </li> */}
+
               {/* <li className="flex items-center">
                 <a
                   className="lg:text-white lg:hover:text-blueGray-200 text-blueGray-700 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
@@ -131,3 +194,4 @@ export default function Navbar(props) {
     </>
   );
 }
+

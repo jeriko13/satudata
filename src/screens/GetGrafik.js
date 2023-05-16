@@ -6,6 +6,7 @@ import {API_URL} from 'config/config';
 import Papa from "papaparse";
 
 import {
+  // eslint-disable-next-line no-unused-vars
   BrowserRouter as Router,
   // Switch,
   // Route,
@@ -24,12 +25,14 @@ import {
 const barColor = ['#7A0BC0', 'green', 'blue', 'yellow', 'aqua', '#EA5C2B', '#000', '#888', 'cyan','#270082','#FC28FB','#470D21','#DA1212','#24A19C','#FFFDA2','#96CEB4','#BAFFB4','#FF6363','#D9D7F1']
 
 export default function GetGrafik({objek_id}) {
+  // eslint-disable-next-line no-unused-vars
   const [dataPromosi,setDataPromosi] = useState([]);
   
   let { data_id } = useParams();
 
   useEffect(() => {
     checkPromo()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [0]);
     
   const checkPromo = () => {
@@ -50,6 +53,7 @@ export default function GetGrafik({objek_id}) {
               if (hasil.length > 0) {
                 objLog = Object.entries(hasil[0]);
                 let keysObj = [];
+                // eslint-disable-next-line no-unused-vars
                 for (const [key, val] of objLog) {
                   keysObj.push(key)
                 }

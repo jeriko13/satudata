@@ -2,12 +2,16 @@ import React, {useState, useEffect} from "react";
 // import PropTypes from "prop-types";
 import Axios from 'axios'
 import {
+  // eslint-disable-next-line no-unused-vars
   BrowserRouter as Router,
   // Switch,
   // Route,
   // Link,
   useParams
 } from "react-router-dom";
+import Footer from "components/Footer.js";
+import Navbar from "components/Navbar";
+import HeaderStats from "components/HeaderStats";
 
 // import {API_URL} from '../../config/config';
 import {API_URL} from 'config/config';
@@ -23,12 +27,16 @@ export default function MetaData() {
 
     useEffect(() => {
       (async () => {
-        const resMetadata = await Axios.get(`${API_URL}/api/list/cv_metadata?cmd=search&t=cv_metadata&z_data_id=LIKE&x_data_id=${data_id}`).then(res => res.data.cv_metadata);
+        // const resMetadata = await Axios.get(`${API_URL}/api/list/cv_metadata?cmd=search&t=cv_metadata&z_data_id=LIKE&x_data_id=${data_id}`).then(res => res.data.cv_metadata);
+        //const resMetadata = await Axios.get(`${API_URL}/api/list/cv_data/${data_id}`).then(res => res.data.cv_data);
+        const resMetadata = await Axios.get(`${API_URL}/api/list/cv_data?cmd=search&t=cv_data&z_data_id=${data_id}&x_data_id=${data_id}`).then(res => res.data.cv_data);
+        // http://localhost/satudata_backoffice/api/list/cv_data?cmd=search&t=cv_data&z_data_id=523&x_data_id=523
         delete resMetadata[0].data_id; 
         delete resMetadata[0].objek_id; 
         const mapData = Object.entries(resMetadata[0]);
         setDataMetadata(mapData)
       })()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const replaceUnderscore = val => {
@@ -38,6 +46,10 @@ export default function MetaData() {
 
     return (
       <>
+        {/* menampilkan Navigasi & Header */}
+        <Navbar transparent />
+        <HeaderStats />
+
         <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
           <div className="rounded-t mb-0 px-4 py-3 border-0">
             <div className="flex flex-wrap items-center border-b">
@@ -68,6 +80,11 @@ export default function MetaData() {
             </table>
           </div>
         </div>
+
+        <Footer />
+{  /* <FooterAdmin /> */}
+
+
       </>
     );
 }

@@ -1,9 +1,9 @@
+// eslint-disable-next-line no-unused-vars
 import React, {useState, useEffect} from "react";
 
 
 export default function HeaderStats({id}) {
-  // eslint-disable-next-line no-unused-vars
-  const [totalKinerja,setTotalKinerja] = useState([]);
+  // const [totalKinerja,setTotalKinerja] = useState([]);
    
   useEffect(() => {
     // checkTotal()
@@ -26,15 +26,14 @@ export default function HeaderStats({id}) {
   // }
 
 
-let Realisasi =  1770046368 ;
-let Pagu =  6981121000 ;
-// eslint-disable-next-line no-unused-vars
-let RealisasiPersen = Realisasi / Pagu * 100 ;
+// let Realisasi =  1770046368 ;
+// let Pagu =  6981121000 ;
+// let RealisasiPersen = Realisasi / Pagu * 100 ;
 
   return (
     <>
       {/* Header */}
-      <div className="relative bg-lightBlue-600 md:pt-32 pb-32 pt-12"></div>
+      <div className="relative bg-lightBlue-600 md:pt-16 pb-12 pt-16"></div>
 
       {/* <div className="relative bg-lightBlue-600 md:pt-32 pb-32 pt-12">
         <div className="px-4 md:px-10 mx-auto w-full">

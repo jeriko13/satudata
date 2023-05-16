@@ -11,47 +11,25 @@ import { useParams} from "react-router-dom";
 
 // components
 
-// export default function ListData({objek_id}) {
-export default function ListData() {
+// export default function ListData({fokus_id}) {
+export default function ListBidangIndikator() {
 
-  let { objek_id } = useParams();
+  let { fokus_id } = useParams();
 
- /*    const [listTahun, setListTahun] = useState([])
-
-    useEffect(() => {
-      (async () => {
-        const resTahun = await Axios.get(`${API_URL}/api/list/t_data/${objek_id}`).then(res => res.data.t_data);
-        setListTahun(resTahun)
-      })()
-    }, []); */
+ 
     const [dataList1, setdataList1] = useState([])
-    // const [dataNama, setDataNama] = useState([])
-
-    // useEffect(() => {
-    //   (async () => {
-    //     const resNama = await Axios.get(`${API_URL}/api/list/cv_nama?cmd=search&t=cv_nama&z_objek_id=LIKE&x_objek_id=${objek_id}`).then(res => res.data.cv_nama);
-    //     setDataNama(resNama[0])
-    //   })()
-    // }, [objek_id]);
-
-
+ 
     useEffect(() => {
-      (async () => {
-        const resList1 = await Axios.get(`${API_URL}/api/list/cv_data?cmd=search&t=cv_data&z_objek_id=LIKE&x_objek_id=${objek_id}`).then(res => res.data.cv_data);
-        setdataList1(resList1)
-      })()
-    }, [objek_id]);
-
-    // useEffect(() => {
-    //   handleList1();
-    // }, []);
+      handleList1();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     // eslint-disable-next-line no-unused-vars
     const handleList1 = async () => {
-      // const resList1 = await Axios.get(`${API_URL}/api/list/cv_data?cmd=search&t=t_data&z_objek_id=LIKE&x_objek_id=${objek_id}`).then(res => res.data.cv_data);
-      const resList1 = await Axios.get(`${API_URL}/api/list/cv_data?cmd=search&t=cv_data&z_objek_id=%3D&x_objek_id=${objek_id}`).then(res => res.data.cv_data);
+      // const resList1 = await Axios.get(`${API_URL}/api/list/cv_rpd_bidang_indikator?cmd=search&t=t_data&z_fokus_id=LIKE&x_fokus_id=${fokus_id}`).then(res => res.data.cv_rpd_bidang_indikator);
+      const resList1 = await Axios.get(`${API_URL}/api/list/cv_rpd_bidang_indikator?cmd=search&t=cv_rpd_bidang_indikator&z_fokus_id=%3D&x_fokus_id=${fokus_id}`).then(res => res.data.cv_rpd_bidang_indikator);
       setdataList1(resList1)
-      // const res = await Axios.get(`${API_URL}/api/list/cv_data/?cmd=search&psearch=${keywords}`).then(res => res.data.cv_data);
+      // const res = await Axios.get(`${API_URL}/api/list/cv_rpd_bidang_indikator/?cmd=search&psearch=${keywords}`).then(res => res.data.cv_rpd_bidang_indikator);
       // setData(res);
     } 
 
@@ -83,14 +61,12 @@ export default function ListData() {
                   LINK  
                 </th>
                 <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                  tahun
+                  Bidang
                 </th>
                 <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                  Judul
+                  Indikator
                 </th>
-                <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                  Instansi
-                </th>
+              
                
               </tr>
             </thead>
@@ -99,18 +75,16 @@ export default function ListData() {
                 {dataList1.map((item, key) => 
                 <tr>
                     <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                        <a href={`/Dashboard/GetData/${item.data_id}`} className="bg-indigo-500 text-white p-2 rounded">Lihat Data dan Metadata</a>
+                        <a href={`/Dashboard/GetIndikator/${item.indikator_id}`} className="bg-indigo-500 text-white p-2 rounded">Lihat Data dan Metadata</a>
                         {/* <a href={`${ROOT_URL}/dashboard/data-bda-dinkes/${item.tahun}`} className="bg-indigo-500 text-white p-2 rounded">Metadata</a> */}
                     </td>
+
                     <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
-                    {item.tahun}
+                    {item.bidang}
                     </th>
                     <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
-                    {item.judul}
-                    </th>
-                    <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
-                    {item.objek}
-                    </th>                  
+                    {item.indikator}
+                    </th>                 
                 </tr>
                 )}
             </tbody>

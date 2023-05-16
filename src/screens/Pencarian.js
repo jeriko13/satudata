@@ -1,11 +1,16 @@
+/* eslint-disable jsx-a11y/anchor-has-content */
 import React, {useState, useEffect} from 'react'
 import Axios from 'axios'
 import { ArrowCircleLeftIcon, SearchIcon } from '@heroicons/react/outline';
 import {useParams} from 'react-router-dom';
-
+// eslint-disable-next-line no-unused-vars
 import {ROOT_URL, API_URL} from 'config/config'
 import Footer from "components/Footer.js";
+import Navbar from "components/Navbar";
+import HeaderStats from "components/HeaderStats";
 
+
+// eslint-disable-next-line import/no-anonymous-default-export
 export default () => {
     let { keys } = useParams();
 
@@ -14,6 +19,7 @@ export default () => {
 
     useEffect(() => {
         handleSearchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const handleSearchData = async () => {
@@ -23,9 +29,14 @@ export default () => {
 
     return (
     <>
+        {/* menampilkan Navigasi & Header */}
+        <Navbar transparent />
+        <HeaderStats />
+
+
         <div className="w-full h-16 bg-blueGray-800 px-4 sm:px-6">
             <div className="w-full sm:w-11/12 mx-auto px-4 flex h-full items-center">
-                <a href={ROOT_URL} className="w-8 h-8 p-1 mr-4"><ArrowCircleLeftIcon className="block h-6 w-6 text-white" aria-hidden="true" /></a>
+                <a href="/#cari" className="w-8 h-8 p-1 mr-4"><ArrowCircleLeftIcon className="block h-6 w-6 text-white" aria-hidden="true" /></a>
                 <h1 className="text-white font-medium text-2xl ml-4">Pencarian</h1>
             </div>
         </div>
@@ -51,7 +62,7 @@ export default () => {
                                 Judul
                                 </th>
                                 <th className="px-6 bg-blueGray-50 text-blueGray-500 border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-pre-wrap font-semibold text-left">
-                                Nama OPD
+                                Instansi
                                 </th>
                             </tr>
                             </thead>

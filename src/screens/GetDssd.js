@@ -23,7 +23,7 @@ import GrafikBda from "screens/GetGrafik";
 // components
 
 // export default function GetData({tahun}) {
-export default function GetData() {
+export default function Dssd() {
 
   let { data_id } = useParams();
   const [dataPromosi,setDataPromosi] = useState([]);
@@ -38,7 +38,7 @@ export default function GetData() {
     
   const checkPromo = () => {
     try {
-      Axios.get(`${API_URL}/api/view/cv_data/${data_id}`)
+      Axios.get(`${API_URL}/api/view/cv_dssd/${data_id}`)
         .then(res => {
           const data = res.data;
           setDataPromosi(data.cv_data);

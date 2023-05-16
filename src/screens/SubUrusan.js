@@ -12,7 +12,7 @@ import { useParams} from "react-router-dom";
 // components
 
 // export default function ListData({objek_id}) {
-export default function ListData() {
+export default function SubUrusan() {
 
   let { objek_id } = useParams();
 
@@ -37,7 +37,7 @@ export default function ListData() {
 
     useEffect(() => {
       (async () => {
-        const resList1 = await Axios.get(`${API_URL}/api/list/cv_data?cmd=search&t=cv_data&z_objek_id=LIKE&x_objek_id=${objek_id}`).then(res => res.data.cv_data);
+        const resList1 = await Axios.get(`${API_URL}/api/list/cv_walidata_sub_urusan?cmd=search&t=cv_walidata_sub_urusan&z_objek_id=LIKE&x_objek_id=${objek_id}`).then(res => res.data.cv_walidata_sub_urusan);
         setdataList1(resList1)
       })()
     }, [objek_id]);
@@ -49,7 +49,7 @@ export default function ListData() {
     // eslint-disable-next-line no-unused-vars
     const handleList1 = async () => {
       // const resList1 = await Axios.get(`${API_URL}/api/list/cv_data?cmd=search&t=t_data&z_objek_id=LIKE&x_objek_id=${objek_id}`).then(res => res.data.cv_data);
-      const resList1 = await Axios.get(`${API_URL}/api/list/cv_data?cmd=search&t=cv_data&z_objek_id=%3D&x_objek_id=${objek_id}`).then(res => res.data.cv_data);
+      const resList1 = await Axios.get(`${API_URL}/api/list/cv_walidata_sub_urusan?cmd=search&t=cv_walidata_sub_urusan&z_objek_id=%3D&x_objek_id=${objek_id}`).then(res => res.data.cv_walidata_sub_urusan);
       setdataList1(resList1)
       // const res = await Axios.get(`${API_URL}/api/list/cv_data/?cmd=search&psearch=${keywords}`).then(res => res.data.cv_data);
       // setData(res);
@@ -83,13 +83,13 @@ export default function ListData() {
                   LINK  
                 </th>
                 <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                  tahun
+                  Sub Urusan
                 </th>
                 <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                  Judul
+                  Kode Urusan
                 </th>
                 <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
-                  Instansi
+                  Nama Sub Urusan
                 </th>
                
               </tr>
@@ -99,18 +99,20 @@ export default function ListData() {
                 {dataList1.map((item, key) => 
                 <tr>
                     <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-                        <a href={`/Dashboard/GetData/${item.data_id}`} className="bg-indigo-500 text-white p-2 rounded">Lihat Data dan Metadata</a>
+                        <a href={`/Dashboard/ListDssd/${item.id}`} className="bg-indigo-500 text-white p-2 rounded">Lihat Data dan Metadata</a>
                         {/* <a href={`${ROOT_URL}/dashboard/data-bda-dinkes/${item.tahun}`} className="bg-indigo-500 text-white p-2 rounded">Metadata</a> */}
+                       
                     </td>
                     <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
-                    {item.tahun}
+                    {item.sub_urusan}
                     </th>
                     <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
-                    {item.judul}
+                    {item.kode_urusan}
                     </th>
                     <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left">
-                    {item.objek}
-                    </th>                  
+                    {item.nama_sub_urusan}
+                    </th>                 
+                      
                 </tr>
                 )}
             </tbody>

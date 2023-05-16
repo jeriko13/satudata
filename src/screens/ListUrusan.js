@@ -7,7 +7,7 @@ import Footer from "components/Footer.js";
 import HeaderStats from "components/HeaderStats";
 // import FooterAdmin from "components/FooterAdmin.js";
 
-export default function ListObjek() {
+export default function ListUrusan() {
 
   const [dataList1, setdataList1] = useState([]);
 
@@ -17,7 +17,7 @@ export default function ListObjek() {
 
   const handleList1 = async () => {
     // https://satudata.banjarnegarakab.go.id/satudata_backoffice/api/list/cv_data?cmd=search&t=cv_data&z_objek_id=%3D&x_objek_id=13
-    const resList1 = await Axios.get(`${API_URL}/api/list/cv_objek`).then(res => res.data.cv_objek);
+    const resList1 = await Axios.get(`${API_URL}/api/list/cv_walidata_urusan`).then(res => res.data.cv_walidata_urusan);
     setdataList1(resList1)
     // const res = await Axios.get(`${API_URL}/api/list/cv_data/?cmd=search&psearch=${keywords}`).then(res => res.data.cv_data);
     // setData(res);
@@ -32,8 +32,6 @@ export default function ListObjek() {
        
         <main className="">
 
-        
-
           <section className="pb-20 bg-blueGray-500">
           
             <div className="container mx-auto px-4">
@@ -42,7 +40,7 @@ export default function ListObjek() {
                 {dataList1.map((item, key) => 
                     <div className="w-full md:w-4/12 px-4 mr-auto ml-auto">
 
-                      <a href= {'ListData/' + item.objek_id } className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-lightBlue-500 overflow-hidden">
+                      <a href= {'SubUrusan/' + item.urusan_id } className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-lightBlue-500 overflow-hidden">
                         <div className="bg-white">
                           <img
                             alt="..."
@@ -63,10 +61,10 @@ export default function ListObjek() {
                             ></polygon>
                           </svg>
                           <h4 className="font-bold text-base text-white text-center">
-                          {item.objek} 
+                          {item.nama_urusan} 
                           </h4>
                           <h4 className="font-bold text-lg text-white text-center">
-                          ({item.nama_singkat})
+                          ({item.keterangan})
                           </h4>
                         </blockquote>
                       </a>
@@ -74,14 +72,9 @@ export default function ListObjek() {
                   )}
               </div>
 
-
             </div>
 
-
-
-
           </section>
-
 
 
         </main>
@@ -92,9 +85,6 @@ export default function ListObjek() {
 
         
       </>
-
-      
-
 
     );
   }
